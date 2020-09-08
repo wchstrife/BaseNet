@@ -26,7 +26,9 @@ class AlexNet(nn.Module):
             nn.MaxPool2d(kernel_size=3, stride=2),                      # (13 - 3) / 2 + 1 = 6
         )   # 6 * 6 * 256 = 9126
 
+        # 保证不管在输入图在什么尺度下，都能保证生成的特征图是6*6的
         self.avgpool = nn.AdaptiveAvgPool2d((6, 6))                       # 输出特征图的大小已经是6*6的了，为什么在这里额外加一个平均池化
+
 
         self.classifier = nn.Sequential(
             nn.Dropout(),
